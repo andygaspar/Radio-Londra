@@ -22,9 +22,19 @@ io.on('connection', (sock) => {
   
 
   sock.on('playerName',(nome)=>{
+    if(giocatori.length > 0){
+      var giocatoriInGioco="";
+      for(var i=0; i<giocatori.length ;i++) giocatoriInGioco+= " "+giocatori[i].nome;
+      giocatoriInGioco += " sono connessi";
+      sock.emit('message',giocatoriInGioco);
+    }
+    
+
     giocatori.push(new Giocatore(sock,nome,giocatori.length));
 
-    if(giocatori.length%3 == 0) {
+    if(giocatori.length%7 == 0) {
+      giocatori.forEach((s) => {
+        s.sock.emit('message',nome+" è connesso")});
       var gioco = new RadioLondra(giocatori,io);
       gioco.setGame();
       gioco.startGame();
@@ -32,7 +42,7 @@ io.on('connection', (sock) => {
     }
     else {
         giocatori.forEach((s) => {
-          s.sock.emit('message',"IN ATTESA DI ALTRI GIOCATORI");
+          s.sock.emit('message',nome+" è connesso");
       });
     }
   });
