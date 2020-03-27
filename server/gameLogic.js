@@ -24,6 +24,7 @@ function play(game){
                 break;
             
             case 1:
+                game.graphix.sendUpdateToClients();
                 game._server.emit('mess_cif',"Qui radio Londra: \xa0\xa0\xa0"+game.turn.codedMessage);
                 game.turn.currentPlayer.sock.emit("indovinaCarte",[]);
                 break;

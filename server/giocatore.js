@@ -1,7 +1,8 @@
 class Giocatore{
-  constructor(sock,nome){
+  constructor(sock,nome,playerNum){
     this.sock= sock;
     this.nome= nome.toUpperCase();
+    this.playerNum = playerNum;
     this.score = 0;
 
     this.sock.player = this;

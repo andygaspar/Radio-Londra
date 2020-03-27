@@ -8,7 +8,12 @@ class Graphix{
 
     sendUpdateToClients(){
         this.game._server.emit("update",{
-          names: this.game.playersNameList(), scores: this.game.playersScoreList()});
+            names: this.game.playersNameList(), 
+            scores: this.game.playersScoreList(),
+            speaker: this.game.turn.speaker.playerNum,
+            nazi: this.game.turn.nazi.playerNum,
+            current: this.game.turn.currentPlayer.playerNum
+        });
     }
 
     sendNewSelection(guess){

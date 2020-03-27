@@ -16,6 +16,7 @@ export default function setSelection(sock,alreadySelected,playerSelection){
             transition(this,"red");
             playerSelection.one = this.number;
             sock.emit('newGuess',this.number);
+            console.log("qua");
           }
 
           else{
@@ -31,11 +32,10 @@ export default function setSelection(sock,alreadySelected,playerSelection){
     }
   }
   
-  const barraGiocatori = document.querySelector('#players');
-  const div = document.createElement("div");
-  div.setAttribute("class","player");
-  div.innerHTML = "TOCCA A TE";
-  barraGiocatori.appendChild(div);
+  const div = document.querySelector('#tuo_turno');
+  const p = document.createElement("p");
+  p.innerHTML = "TOCCA A TE";
+  div.appendChild(p);
 }
 
 

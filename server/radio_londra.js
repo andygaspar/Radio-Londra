@@ -13,7 +13,7 @@ class RadioLondra{
     this.turn = new Turn(this._playersList,1);
 
     this.isOver = false;
-    this.victoryScore = 4;
+    this.victoryScore = 8;
     this.winners = [];
 
     this._playersList.forEach(s => s.sock.emit('message','si parte'));

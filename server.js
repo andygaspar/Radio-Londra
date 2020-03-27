@@ -13,15 +13,16 @@ app.use(express.static(clientPath));
 const server = http.createServer(app);
 const io = socketio(server);
 
-let waitingPlayer = null;
 var giocatori = [];
 
 
 
 io.on('connection', (sock) => {
 
+  
+
   sock.on('playerName',(nome)=>{
-    giocatori.push(new Giocatore(sock,nome));
+    giocatori.push(new Giocatore(sock,nome,giocatori.length));
 
     if(giocatori.length%3 == 0) {
       var gioco = new RadioLondra(giocatori,io);
