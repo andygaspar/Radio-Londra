@@ -19,13 +19,15 @@ var giocatori = [];
 
 
 io.on('connection', (sock) => {
+
   sock.on('playerName',(nome)=>{
     giocatori.push(new Giocatore(sock,nome));
 
-    if(giocatori.length==3) {
+    if(giocatori.length%3 == 0) {
       var gioco = new RadioLondra(giocatori,io);
       gioco.setGame();
       gioco.startGame();
+      giocatori = [];
     }
     else {
         giocatori.forEach((s) => {
@@ -39,6 +41,7 @@ io.on('connection', (sock) => {
     io.emit('message',sock.player.nome+":\xa0\xa0\xa0"+text);
   });
 });
+
 
 
 

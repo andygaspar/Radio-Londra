@@ -1,10 +1,10 @@
-
+import transition from './transition.js'
 
 
 export default function setSelection(sock,alreadySelected,playerSelection){
   var riquadro= document.getElementsByClassName("riquadro");
 
-  for (var i=0; i<9; i++){
+  for (var i=0; i<36; i++){
     riquadro[i].number = i+1;
     riquadro[i].clicked = false;
 
@@ -13,16 +13,14 @@ export default function setSelection(sock,alreadySelected,playerSelection){
 
         if(!this.clicked) {
           if(playerSelection.noneOrOneElement()) {
-            this.style.transition = "background 0.5s linear 0s";
-            this.style.backgroundColor ="red";
+            transition(this,"red");
             playerSelection.one = this.number;
             sock.emit('newGuess',this.number);
           }
 
           else{
             if(!playerSelection.isFull()){
-              this.style.transition = "background 0.5s linear 0s";
-              this.style.backgroundColor ="red";
+            transition(this,"red");
               playerSelection.two = this.number;
               sock.emit('newGuess',this.number);
               sock.emit('selectedCards',[playerSelection.one, playerSelection.two]);
@@ -39,3 +37,5 @@ export default function setSelection(sock,alreadySelected,playerSelection){
   div.innerHTML = "TOCCA A TE";
   barraGiocatori.appendChild(div);
 }
+
+

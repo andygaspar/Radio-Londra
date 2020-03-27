@@ -5,6 +5,7 @@ import askMessage from './alleato.js'
 import setPage from './setPage.js'
 import update from './update.js'
 import endGame from './endGame.js'
+import transition from './transition.js'
 import PlayerSelection from './PlayerSelection.js'
 
 const sock = io();
@@ -52,13 +53,13 @@ sock.on('mess_cif', (messaggio) =>{
 
 sock.on("newCardSelected",function(card){ 
   var riquadro= document.getElementsByClassName("riquadro");
-  riquadro[card-1].style.backgroundColor = "black";
+  transition(riquadro[card-1],"black");
   //riquadro[card-1].onclick = null;
 });
 
 sock.on("writeGuessed",function(card){ 
   var riquadro= document.getElementsByClassName("riquadro");
-  riquadro[card-1].style.backgroundColor = "green";
+  transition(riquadro[card-1],"green");
   //riquadro[card-1].onclick = null;
 });
 

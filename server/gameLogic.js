@@ -15,7 +15,6 @@ function play(game){
     if(!game.isOver) {
 
         game.turn.nextPlayer();
-        console.log(game.turn.currentPlayerIndex);
     
         switch(game.turn.currentPlayerIndex) {
             case 0:
