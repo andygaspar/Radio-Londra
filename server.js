@@ -1,12 +1,12 @@
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
-const RadioLondra = require('./radio_londra');
-const Giocatore = require('./giocatore');
+const RadioLondra = require('./server/radio_londra');
+const Giocatore = require('./server/giocatore');
 
 const app = express();
 
-const clientPath = `${__dirname}/../client`;
+const clientPath = `${__dirname}/client`;
 console.log(`Serving static from ${clientPath}`);
 
 app.use(express.static(clientPath));
