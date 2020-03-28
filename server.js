@@ -19,7 +19,6 @@ var giocatori = [];
 
 io.on('connection', (sock) => {
 
-  console.log("mario è svizze
 
   sock.on('playerName',(nome)=>{
     if(giocatori.length > 0){
