@@ -1,40 +1,29 @@
-import setSelection from './turnoScegli.js'
-import askName from './popup_name.js'
-import cleanScreen from './clean_screen.js'
-import askMessage from './alleato.js'
-import setPage from './setPage.js'
-import update from './update.js'
-import endGame from './endGame.js'
-import transition from './transition.js'
-import PlayerSelection from './PlayerSelection.js'
+import endGame from './turni/endGame.js'
+import setSelection from './turni/turnoScegli.js'
+import askName from './turni/popupName.js'
+import askMessage from './turni/alleato.js'
+import setMasterPage from './turni/masterPage.js'
+
+import setPage from './functions/setPage.js'
+import update from './functions/update.js'
+import imageUpdate from './functions/imageUpdate.js'
+
+
+import PlayerSelection from './objs/PlayerSelection.js'
+import WinValue from './objs/WinValue.js'
+
 
 const sock = io();
 
 askName(sock);
 
-const writeInChat = (text)=>{
-   var parent = document.querySelector('#messaggio');
-   const el= document.createElement('p');
-   el.setAttribute("class","testo_chat");
-   el.innerHTML = text;
-   parent.appendChild(el);
-   var chatLines = document.querySelectorAll('.testo_chat');
-   if(chatLines.length>=10) chatLines[0].remove();
-};
+setPage(sock);
 
-const sendMessage = (e)=>{
-  e.preventDefault();
-  const input = document.querySelector('#chat');
-  const text = input.value;
-  input.value = '';
-  sock.emit('message',text);
-};
-
-setPage();
 
 var playerSelection = new PlayerSelection();
+var winValue =  new WinValue();
 
-sock.on('message',writeInChat);
+sock.on('masterMessage',function() {setMasterPage(sock,winValue)});
 
 sock.on('update',function(lists){update(lists)});
 
@@ -43,7 +32,7 @@ sock.on('indovinaCarte',function(alreadySelected){
   setSelection(sock,alreadySelected,playerSelection);
 });
 
-sock.on('pulisci_schermo',function(){cleanScreen()});
+sock.on('pulisci_schermo',function(){imageUpdate.cleanScreen()});
 
 sock.on('chiedi_messaggio',function(carte){askMessage(sock,carte)});
 
@@ -53,7 +42,7 @@ sock.on('mess_cif', (messaggio) =>{
 
 sock.on("newCardSelected",function(card){ 
   var riquadro= document.getElementsByClassName("riquadro");
-  transition(riquadro[card-1],"black");
+  imageUpdate.setTransition(riquadro[card-1],"red");
   //riquadro[card-1].onclick = null;
 });
 
@@ -67,4 +56,4 @@ sock.on("endGame",function(winners){
   endGame(sock,winners);
 });
 
-document.querySelector('#chat_box').addEventListener('submit',sendMessage);
+

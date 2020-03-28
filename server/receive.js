@@ -19,6 +19,10 @@ function receive(game){
         game._playersList[i].sock.on('newGuess',(guess) =>{
             game.graphix.sendNewSelection(guess);
         });
+
+        game._playersList[i].sock.on('disconnect',() =>{
+            game._server.emit("message","Un amico siè disconnesso<br>occorre ricaricare la partita");
+        });
         
     }   
 }

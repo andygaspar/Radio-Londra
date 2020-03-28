@@ -1,4 +1,4 @@
-import transition from './transition.js'
+import imageUpdate from '../functions/imageUpdate.js'
 
 
 export default function setSelection(sock,alreadySelected,playerSelection){
@@ -13,7 +13,7 @@ export default function setSelection(sock,alreadySelected,playerSelection){
 
         if(!this.clicked) {
           if(playerSelection.noneOrOneElement()) {
-            transition(this,"red");
+            imageUpdate.setTransition(this,"red");
             playerSelection.one = this.number;
             sock.emit('newGuess',this.number);
             console.log("qua");
@@ -21,7 +21,7 @@ export default function setSelection(sock,alreadySelected,playerSelection){
 
           else{
             if(!playerSelection.isFull()){
-            transition(this,"red");
+            imageUpdate.setTransition(this,"red");
               playerSelection.two = this.number;
               sock.emit('newGuess',this.number);
               sock.emit('selectedCards',[playerSelection.one, playerSelection.two]);

@@ -5,6 +5,7 @@ height: 100%;
 
 body {
   min-height: 100%;
+  height: 100vh;
   margin: 0;
     background-image: url(img/sfondo.jpg);
     min-width: 400px;
@@ -63,14 +64,23 @@ body {
   min-height: 200px;
   min-width: 80%;
   max-width: 200px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height:220px;
+}
+
+#messaggio::-webkit-scrollbar{
+  width: 10px;
 }
 
 .testo_chat{
   color: lightblue;
-  font-size: 1.3vw;
+  font-size: 1.1vw;
   font-family: 'Acme';
   margin: 1px;
-  /* margin: 0; */
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
 }
 
 #players{
@@ -157,6 +167,12 @@ body {
 
 
 #inputName{
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+#startButton{
   display: block;
   margin-left: auto;
   margin-right: auto

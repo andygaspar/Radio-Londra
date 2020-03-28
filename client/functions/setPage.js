@@ -1,6 +1,11 @@
+import chat from '../chat/chat.js'
 
+export default function setPage(sock){
 
-export default function setPage(){
+  sock.on('message',function(text) {chat.write(text)});
+
+  chat.setSendEvent(sock)
+
   var board = document.querySelector("#board");
   for(var n=0;n<9;n++){
 

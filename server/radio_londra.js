@@ -2,7 +2,12 @@
 
 class RadioLondra{
 
-  constructor(plList,server){
+  constructor(plList,server,winValue){
+
+  }
+
+
+  setGame(plList,server,winValue){
     const Turn= require('./turno');
     const Graphix = require('./graphixHeldler');
 
@@ -13,14 +18,10 @@ class RadioLondra{
     this.turn = new Turn(this._playersList,1);
 
     this.isOver = false;
-    this.victoryScore = 8;
+    this.victoryScore = winValue;
     this.winners = [];
 
     this._playersList.forEach(s => s.sock.emit('message','si parte'));
-  }
-
-
-  setGame(){
     const receive = require('./receive');
     receive(this);
   }
@@ -87,7 +88,6 @@ class RadioLondra{
     console.log(this.isOver);
   }
 
- 
 
 };
 
