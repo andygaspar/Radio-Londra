@@ -32,8 +32,7 @@ io.on('connection', (sock) => {
 
     giocatori.push(new Giocatore(sock,nome,giocatori.length));
 
-    if(giocatori.length % 1 == 0) {
-      console.log("mandi");
+    if(giocatori.length % 3 == 0) {
       giocatori.forEach((s) => {
         s.sock.emit('message',nome+" è connesso")});
       var gioco = new RadioLondra(giocatori,io);
