@@ -19,7 +19,7 @@ var giocatori = [];
 
 io.on('connection', (sock) => {
 
-  
+  console.log("mario è svizzero");
 
   sock.on('playerName',(nome)=>{
     if(giocatori.length > 0){
