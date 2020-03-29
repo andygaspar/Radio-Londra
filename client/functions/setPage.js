@@ -13,7 +13,7 @@ export default function setPage(sock){
     nested.setAttribute("class","nestedBoard");
     board.appendChild(nested);
 
-    for (var i=n*4 + 1;i< n*4 + 5;i++) {
+    for (var i=n*4 ;i< n*4 + 4;i++) {
 
       const el= document.createElement('a');
       el.setAttribute("class","riquadro");
@@ -21,7 +21,7 @@ export default function setPage(sock){
 
       const image = document.createElement("img");
       
-      if(i % 2 == 1) image.setAttribute("id","imageSx");
+      if(i % 2 == 0) image.setAttribute("id","imageSx");
       else image.setAttribute("id","imageDx");
       
       image.src = "img/"+i+".jpg";

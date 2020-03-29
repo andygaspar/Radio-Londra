@@ -12,12 +12,12 @@ export default function setSelecstion(sock,alreadySelected,numCardsToGuess){
   tuoTurno.innerHTML = "TOCCA A TE";
   div.appendChild(tuoTurno);
 
-  for (var i=0; i<36; i++){
-    riquadro[i].number = i+1;
-    riquadro[i].clicked = false;
+  for (var card=0; card<36; card++){
+    riquadro[card].number = card;
+    riquadro[card].clicked = false;
 
-    if(!alreadySelected.includes(i+1)){
-      riquadro[i].onclick = function(){
+    if(!alreadySelected.includes(card)){
+      riquadro[card].onclick = function(){
 
         if(!this.clicked  && !playerSelection.isComplete()) {
           this.clicked = true;

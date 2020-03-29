@@ -41,13 +41,13 @@ sock.on('mess_cif', (messaggio) =>{
 
 sock.on("newCardSelected",function(card){ 
   var riquadro= document.getElementsByClassName("riquadro");
-  imageUpdate.setTransition(riquadro[card-1],"red");
+  imageUpdate.setTransition(riquadro[card],"red");
   //riquadro[card-1].onclick = null;
 });
 
 sock.on("writeGuessed",function(card){ 
   var riquadro= document.getElementsByClassName("riquadro");
-  imageUpdate.setTransition(riquadro[card-1],"green");
+  imageUpdate.setTransition(riquadro[card],"green");
   //riquadro[card-1].onclick = null;
 });
 
