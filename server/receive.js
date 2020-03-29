@@ -11,7 +11,7 @@ function receive(game){
         game._playersList[i].sock.on('selectedCards',(selectedCards) =>{
             game.cardSelection(selectedCards);
             var now = new Date().getTime();
-            while(new Date().getTime() < now + (500)){};
+            while(new Date().getTime() < now + (700)){};
             game.graphix.sendWriteGuessed(selectedCards);
             play(game);
         });

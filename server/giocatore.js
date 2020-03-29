@@ -24,7 +24,7 @@ class Giocatore{
   }
 
   compare(otherPlayer){
-    if(this.nome.localeCompare(other.nome)) return true;
+    if(this.nome.localeCompare(otherPlayer.nome)) return true;
     else return false;
   }
 

@@ -26,16 +26,19 @@ function play(game){
             case 1:
                 game.graphix.sendUpdateToClients();
                 game._server.emit('mess_cif',"Qui radio Londra: \xa0\xa0\xa0"+game.turn.codedMessage);
-                game.turn.currentPlayer.sock.emit("indovinaCarte",[]);
+                game.turn.currentPlayer.sock.emit("indovinaCarte",{
+                    alreadySelected: game.turn.alreadySelected, numCardsToGuess: game.turn.numCardsToGuess});
                 break;
 
             default:
                 game.graphix.sendUpdateToClients();
-                game.turn.currentPlayer.sock.emit("indovinaCarte",game.turn.alreadySelected);
+                game.turn.currentPlayer.sock.emit("indovinaCarte",{
+                    alreadySelected: game.turn.alreadySelected, numCardsToGuess: game.turn.numCardsToGuess});
                 break;
         }
     }
     else{
+        game.graphix.sendUpdateToClients();
         game.graphix.endGame();
     }
 }

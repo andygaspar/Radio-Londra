@@ -1,22 +1,34 @@
 
 
 export default class PlayerSelection{
-    constructor(){
+    constructor(numCardToGuess){
+        this.numCardToGuess = numCardToGuess
         this.one = null;
-        this.two = null;        
+        this.two = null;     
+        this.turnOver = false;   
     }
 
-    empty(){
-        this.one = null;
-        this.two = null; 
+    add(cardSelected){
+        if(this.one == null) this.one = cardSelected;
+        else this.two = cardSelected;
     }
-    
-    noneOrOneElement(){
-        if(this.one==null) return true;
-        else return false;
+
+    isComplete(){
+        if(!this.turnOver){
+            if(this.numCardToGuess == 1){
+                if(this.one!=null) return true;
+                else return false;
+            } 
+            else {
+                if(this.two!=null) return true;
+                else return false;
+            }
+        }
+        else return true;
     }
-    isFull(){
-        if(this.two!=null) return true;
-        else return false;
+    over(){
+        this.turnOver = true;
     }
+
+
 }

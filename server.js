@@ -49,7 +49,7 @@ io.on('connection', (sock) => {
   
      
       giocatori.forEach((s) => {
-        s.sock.emit('message',nome+" è connesso");
+        s.sock.emit('message',nome.toUpperCase()+" è connesso");
       });
   
 

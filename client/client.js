@@ -20,16 +20,15 @@ askName(sock);
 setPage(sock);
 
 
-var playerSelection = new PlayerSelection();
+
 var winValue =  new WinValue();
 
 sock.on('masterMessage',function() {setMasterPage(sock,winValue)});
 
 sock.on('update',function(lists){update(lists)});
 
-sock.on('indovinaCarte',function(alreadySelected){
-  playerSelection.empty();
-  setSelection(sock,alreadySelected,playerSelection);
+sock.on('indovinaCarte',function(info){
+  setSelection(sock,info.alreadySelected,info.numCardsToGuess);
 });
 
 sock.on('pulisci_schermo',function(){imageUpdate.cleanScreen()});
@@ -48,7 +47,7 @@ sock.on("newCardSelected",function(card){
 
 sock.on("writeGuessed",function(card){ 
   var riquadro= document.getElementsByClassName("riquadro");
-  transition(riquadro[card-1],"green");
+  imageUpdate.setTransition(riquadro[card-1],"green");
   //riquadro[card-1].onclick = null;
 });
 

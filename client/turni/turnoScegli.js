@@ -1,8 +1,16 @@
 import imageUpdate from '../functions/imageUpdate.js'
+import PlayerSelection from '../objs/PlayerSelection.js';
 
 
-export default function setSelection(sock,alreadySelected,playerSelection){
+export default function setSelecstion(sock,alreadySelected,numCardsToGuess){
+
+  var playerSelection = new PlayerSelection(numCardsToGuess);
+
   var riquadro= document.getElementsByClassName("riquadro");
+  const div = document.querySelector('#tuo_turno');
+  const tuoTurno = document.createElement("p");
+  tuoTurno.innerHTML = "TOCCA A TE";
+  div.appendChild(tuoTurno);
 
   for (var i=0; i<36; i++){
     riquadro[i].number = i+1;
@@ -11,31 +19,23 @@ export default function setSelection(sock,alreadySelected,playerSelection){
     if(!alreadySelected.includes(i+1)){
       riquadro[i].onclick = function(){
 
-        if(!this.clicked) {
-          if(playerSelection.noneOrOneElement()) {
+        if(!this.clicked  && !playerSelection.isComplete()) {
+          this.clicked = true;
+          if(!playerSelection.isComplete()) {
             imageUpdate.setTransition(this,"red");
-            playerSelection.one = this.number;
+            playerSelection.add (this.number);
             sock.emit('newGuess',this.number);
-            console.log("qua");
           }
 
-          else{
-            if(!playerSelection.isFull()){
-            imageUpdate.setTransition(this,"red");
-              playerSelection.two = this.number;
-              sock.emit('newGuess',this.number);
-              sock.emit('selectedCards',[playerSelection.one, playerSelection.two]);
-            }
+          if(playerSelection.isComplete()){
+            playerSelection.over();
+            sock.emit('selectedCards',[playerSelection.one, playerSelection.two]);
+            tuoTurno.remove();         
           }
         }
       }
     }
   }
-  
-  const div = document.querySelector('#tuo_turno');
-  const p = document.createElement("p");
-  p.innerHTML = "TOCCA A TE";
-  div.appendChild(p);
 }
 
 

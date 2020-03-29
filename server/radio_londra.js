@@ -85,7 +85,6 @@ class RadioLondra{
       if(playerScores[i]>= this.victoryScore) this.isOver = true;
     }
     if(this.isOver==true) this.makeWinnersList();
-    console.log(this.isOver);
   }
 
 

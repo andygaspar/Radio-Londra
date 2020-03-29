@@ -36,6 +36,8 @@ export default function setMaterPage(sock,winValue) {
   playersListText.setAttribute("id","title");
   playersListText.style.textAlign = "center";
 
+  var numConnectedPlayers = 1;
+
 
   el.addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -58,9 +60,12 @@ export default function setMaterPage(sock,winValue) {
 
   startButton.addEventListener('click',(e)=>{
     e.preventDefault();
-    sock.emit('startGame',winValue.value);
-    el.remove();
-    schermo_opaco.remove();
+    if(numConnectedPlayers > 2) {
+      sock.emit('startGame',winValue.value);
+      el.remove();
+      schermo_opaco.remove();
+    }
+   
   });
 
 
@@ -68,6 +73,7 @@ export default function setMaterPage(sock,winValue) {
     var plList = "";
     for(var i in playerConnected) plList += playerConnected[i]+"<br>";
     playersListText.innerHTML = plList;
+    numConnectedPlayers += 1;
 
   });
 

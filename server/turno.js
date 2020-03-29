@@ -15,6 +15,8 @@ class Turn{
         this.alreadySelected = [];
         this.currentPlayer = this.playersList[0];
         this.currentPlayerIndex = -1;
+
+        this.numCardsToGuess = 2;
         
         
     }
@@ -25,7 +27,12 @@ class Turn{
     }
 
     addToAlreadySelected(selectedCards) {
-        for(var i=0; i<selectedCards.length; i++) this.alreadySelected.push(selectedCards[i]);
+        for(var i=0; i<selectedCards.length; i++) {
+            this.alreadySelected.push(selectedCards[i]);
+
+            if(selectedCards[i] == this.cardsToGuess.uno || 
+                selectedCards[i]==this.cardsToGuess.due) this.numCardsToGuess -= 1;
+        }
     }
 
     currentIsNazi(){
@@ -34,6 +41,7 @@ class Turn{
     }
 
     isOver(){
+        if(this.numCardsToGuess == 0) return true;
         if(this.currentPlayerIndex == this.playersList.length-1) return true;
         else false;
     }
