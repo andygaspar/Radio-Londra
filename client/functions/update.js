@@ -12,6 +12,10 @@ export default function update(lists){
   turno.setAttribute("class","player");
   barraGiocatori.appendChild(turno);
 
+  const vuoto = document.createElement("div");
+  vuoto.setAttribute("class","player");
+  turno.appendChild(vuoto);
+
   const turnText=document.createElement("p");
   turnText.setAttribute("class","namePlayer");
   turnText.innerHTML = "TURNO "+lists.numTurn;
