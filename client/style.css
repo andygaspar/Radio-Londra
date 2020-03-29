@@ -146,16 +146,16 @@ body {
 
   display: block;
   margin-left: auto;
-  height: 85px;
-  width: auto;
+  width: 85px;
+  height: auto;
 
 }
 
 #imageDx{
   display: block;
   margin-right: auto;
-  height: 85px;
-  width: auto;
+  width: 85px;
+  height: auto;
 }
 
 
@@ -201,10 +201,12 @@ body {
   float: left;
   max-height: 200px;
   width:50%;
+  height:auto;
 }
 
 #carta_dx{
   float: right;
   max-height: 200px;
   width:50%;
+  height:auto;
 }
