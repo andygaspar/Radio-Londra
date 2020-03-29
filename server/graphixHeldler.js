@@ -18,6 +18,8 @@ class Graphix{
         });        
     }
 
+
+    
     sendNewSelection(guess){
         for(var i= 0; i<this.game._numPlayers; i++){
             if(i != this.game.turn.currentPlayerIndex)
