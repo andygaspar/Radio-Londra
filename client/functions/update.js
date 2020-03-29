@@ -7,6 +7,15 @@ export default function update(lists){
   while (barraGiocatori.firstChild) {
     barraGiocatori.removeChild(barraGiocatori.lastChild);
   }
+
+  const turno = document.createElement("div");
+  turno.setAttribute("class","player");
+  barraGiocatori.appendChild(turno);
+
+  const turnText=document.createElement("p");
+  turnText.setAttribute("class","namePlayer");
+  turnText.innerHTML = "TURNO "+lists.numTurn;
+  turno.appendChild(turnText);
   
   for (var i=0; i<lists.names.length;i++){
     const div = document.createElement("div");

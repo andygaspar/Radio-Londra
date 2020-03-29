@@ -4,6 +4,7 @@ class Graphix{
 
     constructor(game){
         this.game = game;
+        this.sleep = require('./sleep')
     }
 
     sendUpdateToClients(){
@@ -12,8 +13,9 @@ class Graphix{
             scores: this.game.playersScoreList(),
             speaker: this.game.turn.speaker.playerNum,
             nazi: this.game.turn.nazi.playerNum,
-            current: this.game.turn.currentPlayer.playerNum
-        });
+            current: this.game.turn.currentPlayer.playerNum,
+            numTurn: this.game.turn.turnNum
+        });        
     }
 
     sendNewSelection(guess){
@@ -24,10 +26,20 @@ class Graphix{
     }
 
     sendWriteGuessed(selectedCards){
-        if(this.game.turn.cardsToGuess.cards.includes(selectedCards[0])) 
-            this.game._server.emit("writeGuessed",selectedCards[0]);
-        if(this.game.turn.cardsToGuess.cards.includes(selectedCards[1])) 
-            this.game._server.emit("writeGuessed",selectedCards[1]);
+        var writeCards = [];
+        for (var card in selectedCards){
+            if(this.game.turn.cardsToGuess.cards.includes(selectedCards[card])) 
+                writeCards.push(selectedCards[card]);
+        }
+        this.sleep(0.4);
+        this.game._server.emit("writeGuessed",writeCards);
+        
+    }
+
+    newTurn(){
+        this.game._server.emit('new_Turn');
+        this.sleep(2.2);
+        
     }
 
     endGame(){

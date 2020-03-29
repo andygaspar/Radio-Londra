@@ -2,10 +2,9 @@
 export default {
   setTransition: function(elem,color){
     elem.childNodes[0].style.transition = "border 0.5s linear 0s";
-    elem.childNodes[0].style.border ="12px solid "+color;
+    elem.childNodes[0].style.border ="25px solid "+color;
     elem.childNodes[0].style.backgroundColor = color;
-    elem.childNodes[0].style.opacity = "0.4s";
-    elem.childNodes[0].style.width = "57px";
+    elem.childNodes[0].style.width = "35px";
     elem.childNodes[0].style.transition = "width 0.5s linear 0s";
     elem.childNodes[0].style.transition = "opacity 0.5s linear 0s";
     elem.childNodes[0].style.transition = "border 0.5s linear 0s";
@@ -20,6 +19,20 @@ export default {
       riquadro[i].childNodes[0].style.width = "85px";
       riquadro[i].onclick = null;
     }
+    
+  },
+
+  newTurnAdvert: function(newTurnNum){
+    var popup = document.querySelector(".pagina");
+    const el= document.createElement('form');
+    el.setAttribute("id","box_iniziale");
+    popup.appendChild(el);
+
+    const title = document.createElement("p");
+    title.setAttribute("id","title");
+    title.style.textAlign = "center";
+    title.innerHTML = "TURNO "+newTurnNum;
+    el.appendChild(title);
   }
 }
   

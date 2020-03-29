@@ -8,9 +8,7 @@ function play(game){
 
         if(!game.isOver){
             game.newTurn();
-            var sleep = require('./sleep')
-            sleep(1);
-            game._server.emit('pulisci_schermo');
+            game.graphix.newTurn();
         }
     }
 

@@ -8,8 +8,6 @@ import setPage from './functions/setPage.js'
 import update from './functions/update.js'
 import imageUpdate from './functions/imageUpdate.js'
 
-
-import PlayerSelection from './objs/PlayerSelection.js'
 import WinValue from './objs/WinValue.js'
 
 
@@ -28,26 +26,29 @@ sock.on('masterMessage',function() {setMasterPage(sock,winValue)});
 sock.on('update',function(lists){update(lists)});
 
 sock.on('indovinaCarte',function(info){
-  setSelection(sock,info.alreadySelected,info.numCardsToGuess);
-});
+  setSelection(sock,info.alreadySelected,info.numCardsToGuess);});
 
-sock.on('pulisci_schermo',function(){imageUpdate.cleanScreen()});
+
+sock.on('new_Turn',function(){
+  imageUpdate.cleanScreen();
+});
 
 sock.on('chiedi_messaggio',function(carte){askMessage(sock,carte)});
 
 sock.on('mess_cif', (messaggio) =>{
-  document.querySelector('#messaggio_cifrato').innerHTML = messaggio;
-});
+  document.querySelector('#messaggio_cifrato').innerHTML = messaggio;});
 
 sock.on("newCardSelected",function(card){ 
   var riquadro= document.getElementsByClassName("riquadro");
-  imageUpdate.setTransition(riquadro[card],"red");
+  imageUpdate.setTransition(riquadro[card],"#ae0000");
   //riquadro[card-1].onclick = null;
 });
 
-sock.on("writeGuessed",function(card){ 
-  var riquadro= document.getElementsByClassName("riquadro");
-  imageUpdate.setTransition(riquadro[card],"green");
+sock.on("writeGuessed",function(cards){ 
+  for(var i in cards){ 
+    var riquadro= document.getElementsByClassName("riquadro");
+    imageUpdate.setTransition(riquadro[cards[i]],"#7bd979");
+  }
   //riquadro[card-1].onclick = null;
 });
 

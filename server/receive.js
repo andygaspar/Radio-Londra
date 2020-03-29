@@ -10,8 +10,6 @@ function receive(game){
 
         game._playersList[i].sock.on('selectedCards',(selectedCards) =>{
             game.cardSelection(selectedCards);
-            var sleep = require('./sleep')
-            sleep(0.7);
             game.graphix.sendWriteGuessed(selectedCards);
             play(game);
         });
@@ -21,7 +19,7 @@ function receive(game){
         });
 
         game._playersList[i].sock.on('disconnect',() =>{
-            game._server.emit("message","Un amico siè disconnesso<br>occorre ricaricare la partita");
+            game._server.emit("message","Un amico si è disconnesso.<br>Occorre ricaricare la partita");
         });
         
     }   
