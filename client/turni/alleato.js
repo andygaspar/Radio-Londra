@@ -28,9 +28,8 @@ export default function askMessage(sock,carte) {
   codedMessage.setAttribute("autocomplete","off");
   el.appendChild(codedMessage);
 
-  const schermo_opaco= document.createElement('form');
-  schermo_opaco.setAttribute("id","opaco");
-  popup.appendChild(schermo_opaco);
+  const board = document.querySelector("#board");
+  board.style.opacity = "0.7";
 
   document.querySelector('#box_iniziale').addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -39,6 +38,6 @@ export default function askMessage(sock,carte) {
     input.value = '';
     sock.emit('messaggio_cifrato',messaggio);
     el.remove();
-    schermo_opaco.remove();
+    board.style.opacity = "1";
   });
 }

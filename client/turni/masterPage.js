@@ -22,9 +22,9 @@ export default function setMaterPage(sock,winValue) {
   numPlayerInput.setAttribute("autocomplete","off");
   el.appendChild(numPlayerInput);
 
-  const schermo_opaco= document.createElement('form');
-  schermo_opaco.setAttribute("id","opaco");
-  popup.appendChild(schermo_opaco);
+  const board = document.querySelector("#board");
+  board.style.opacity = "0.7";
+
 
   const startButton = document.createElement("input");
   startButton.setAttribute("type","button");
@@ -63,7 +63,7 @@ export default function setMaterPage(sock,winValue) {
     if(numConnectedPlayers > 2) {
       sock.emit('startGame',winValue.value);
       el.remove();
-      schermo_opaco.remove();
+      board.style.opacity = "1";
     }
    
   });

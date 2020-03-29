@@ -21,6 +21,10 @@ export default function askName(sock) {
   schermo_opaco.setAttribute("id","opaco");
   popup.appendChild(schermo_opaco);
 
+  const chatBox = document.querySelector("#chat_box");
+  chatBox.setAttribute("z-index","11");
+  chatBox.setAttribute("position","absolute");
+
   document.querySelector('#box_iniziale').addEventListener('submit',(e)=>{
     e.preventDefault();
     const input = document.querySelector('#inputName');
