@@ -19,6 +19,7 @@ function receive(game){
         });
 
         game._playersList[i].sock.on('disconnect',() =>{
+            console.log("disconnesso");
             game._server.emit("message","Un amico si è disconnesso.<br>Occorre ricaricare la partita");
         });
         
